@@ -81,6 +81,10 @@ module.exports = {
           },
         },
       },
+      {
+        test: /\.svg$/,
+        type: 'asset',
+      },
     ],
   },
 }
