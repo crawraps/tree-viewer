@@ -95,4 +95,10 @@ export abstract class CustomElement extends HTMLElement {
       this.state[prop] = this.select(selector)
     })
   }
+
+  setStyle(style: Partial<CSSStyleDeclaration>) {
+    Object.entries(style).forEach(
+      ([key, value]) => (this.style[key as any] = value as string)
+    )
+  }
 }
