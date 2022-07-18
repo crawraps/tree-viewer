@@ -1,18 +1,16 @@
 import '@/styles/global.scss'
-import { ICustomElement } from './components/CustomElement'
+import { CustomElement, ICustomElement } from './components/CustomElement'
 import Search from './components/Search'
 import TreeViewer from './components/TreeViewer'
 import { InitialData, TreeViewerData } from './treeViewerData'
 
 class App {
-  private elements: ICustomElement[]
+  private readonly components: ICustomElement[]
+  public readonly elements: { [key: string]: CustomElement }
 
-  constructor(elements?: ICustomElement[]) {
-    this.elements = elements
-  }
-
-  addElement(element: ICustomElement) {
-    this.elements.push(element)
+  constructor(components?: ICustomElement[]) {
+    this.components = components
+    this.elements = {}
   }
 
   setViewerData(state: TreeViewerData) {
@@ -20,11 +18,12 @@ class App {
     viewer.setState(state)
   }
 
-  init() {
-    if (this.elements) {
-      this.elements.forEach((elem) =>
+  defineComponents() {
+    if (this.components) {
+      this.components.forEach((elem) => {
         window.customElements.define(elem.DOMName, elem)
-      )
+        this.elements[elem.DOMName] = document.querySelector(elem.DOMName)
+      })
     } else {
       throw 'Elements is not defined'
     }
@@ -32,7 +31,6 @@ class App {
 }
 
 // Initialize the app
-const app = new App([TreeViewer, Search])
-app.init()
-
+export const app = new App([TreeViewer, Search])
+app.defineComponents()
 app.setViewerData(InitialData)

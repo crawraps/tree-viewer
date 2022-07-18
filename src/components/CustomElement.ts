@@ -53,6 +53,10 @@ export abstract class CustomElement extends HTMLElement {
     })
   }
 
+  getState(): typeof this.state {
+    return this.state
+  }
+
   getBindKey(key: string, obj: { [key: string]: any }): string[] {
     return Object.keys(obj).map((k) =>
       this.isObject(obj[k])

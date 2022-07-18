@@ -1,4 +1,3 @@
-// Define types for tree viewer
 export type Item = {
   label: string
   icon: string
@@ -11,14 +10,12 @@ export type TreeViewerData = {
   items: Item[] | []
 }
 
-// Create icon id's
 export const Icons = {
   file: require('./assets/images/icons/file.svg'),
   folder: require('./assets/images/icons/folder.svg'),
   object: require('./assets/images/icons/object.svg'),
 }
 
-// Define initial viewer data
 export const InitialData: TreeViewerData = {
   search: '',
   items: [

@@ -18,6 +18,8 @@ export default class TreeViewer extends CustomElement {
       display: 'flex',
       flexDirection: 'column',
       backgroundColor: '#3d3d3d',
+      boxSizing: 'border-box',
+      padding: '35px 0',
     })
   }
 }
