@@ -3,8 +3,12 @@ export interface ICustomElement {
   DOMName: string
 }
 
+export interface State extends Object {
+  [key: string]: any
+}
+
 export abstract class CustomElement extends HTMLElement {
-  protected readonly state: { [key: string]: any }
+  protected readonly state: State
 
   constructor() {
     super()
